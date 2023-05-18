@@ -66,3 +66,77 @@ header {
 .sendbtn:hover{
     background: #03426688;
 }
+.stfreg1{
+    width: 100%;
+    background: rgb(44, 44, 61);
+}
+.regbtn{
+    color: aliceblue;
+    margin-left: 35%;
+    margin-top: 0%;
+    font-size: larger;
+    background: rgb(32, 32, 50);
+    width: 30%;
+    height: 10%;
+    cursor: pointer;
+}
+.regform{
+    width: 100%;
+    padding-left: 2%;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+}
+
+.regbtn1{
+    color: aliceblue;
+    margin-left: 25%;
+    margin-top: 0%;
+    font-size: larger;
+    background: rgb(32, 32, 50);
+    width: 30%;
+    height: 10%;
+    cursor: pointer;
+}
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.form-row label,
+.form-row input,
+.form-row select {
+    width: calc(50% - 10px);
+}
+
+.form-row label {
+    text-align: left;
+}
+
+.form-row input[type="radio"] {
+    /* Hide the default radio button */
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    outline: none;
+    margin-right: 10px;
+    position: relative;
+    top: 5px;
+}
+
+/* Style the radio button when selected */
+.form-row input[type="radio"]:checked::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #000;
+}
