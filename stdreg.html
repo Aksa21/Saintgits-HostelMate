@@ -20,87 +20,85 @@
         </div>
     </div>
     <div class="row no-gutters">
-        <div class="col-md-4">
-            <form class="regform">
+        <div class="col-2"></div>
+        <div class="col-7">
+            <form class="regform" action="stdsignup.php" method="post">
                 <br>
                 <br>
-                <label>Name :</label>
-                <input type="text">
-                <br>
-                <br>
-                <label>Room No :</label>
-                <input type="number">
-                <br>
-                <br>
-                <label>Admission No : </label>
-                <input type="text">
-                <br>
-                <br>
-                <label>Program :      </label>
-                <input type="text">
-                <br>
-                <br>
-            </form>
-        </div>
-        <div class="col-md-4">
-            <form class="regform">
-                <br>
-                <br>
-                <label>Branch : </label>
-                <input type="text">
-                <br>
-                <br>
-                <label>Guardian :     </label>
-                <input type="text">
-                <br>
-                <br>
-                <label>Guardian Mob : </label>
-                <input type="number">
-                <br>
-                <br>
-                <label>Address : </label>
-                <input type="text" class="inp" >
-                <br>
-                <br>
-            </form>
-        </div>   
-        <div class="col-md-4">
-            <form class="regform">
-                <br>
-                <br>
-                <label>Mobile : </label>
-                <input type="number" class="inp">
-                <br>
-                <br>
-                <label>Date Of Birth : </label>
-                <input type="date" class="inp">
-                <br>
-                <br>
-                <label>Pin : </label>
-                <input type="text" class="inp">
-                <br>
-                <br>
-                <label>E-mail id : </label>
-                <input type="email" class="inp">
-                <br>
-                <br>
-                <label>Veg / Non-Veg : </label>
-                <select>
+                <div class="form-row">
+                    <label for="name">Name:</label>
+                    <input type="text" name="name" required>
+                </div>
+
+                <div class="form-row">
+                    <label for="room_no">Room No:</label>
+                    <input type="int" name="room_no" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="admission_no">Admission No:</label>
+                    <input type="int" name="admission_no" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="program">Program:</label>
+                    <input type="text" name="program" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="branch">Branch:</label>
+                    <input type="text" name="branch" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="guardian">Guardian:</label>
+                    <input type="text" name="guardian" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="guardian_mob">Guardian Mobile:</label>
+                    <input type="text" name="guardian_mob" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="address">Address:</label>
+                    <input type="text" name="address" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="mob">Mobile:</label>
+                    <input type="text" name="mob" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" name="dob" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="pin">Pincode:</label>
+                    <input type="text" name="pin" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required>
+                </div>
+                
+                <div class="form-row">
+                    <label for="food_type">Veg / Non-Veg :</label>
+                    <select name="food_type">
                     <option>Choose..</option>
                     <option>Veg</option>
                     <option>Non-Veg</option>
-                </select>
+                    </select>
+                </div>
                 <br>
                 <br>
+                <input type="submit" value="Submit" class="regbtn1"><br><br>
             </form>
-        </div>   
-    </div>
-    <br>
-    <br>
-    <div class="foot">
-        <form action="password.html">
-            <button class="regbtn" type="submit">Sign Up</button>
-        </form>
+        </div>
+        <div class="col-3"></div>
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
