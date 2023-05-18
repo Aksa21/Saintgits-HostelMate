@@ -20,31 +20,51 @@
         </div>
     </div>
     <div class="row no-gutters">
-        <form class="regform1" action="stafsignup.php" method="post">
+        <div class="col-2"></div>
+        <div class="col-7">
+        <form class="regform" action="stafsignup.php" method="post">
         <br>
         <br>
-        <label for="name">Name:</label>
-        <input type="text" name="name" required><br><br>
-        
+        <div class="form-row">
+            <label for="name">Name:</label>
+            <input type="text" name="name" required>
+        </div>
+
+        <div class="form-row">
         <label for="gender">Gender:</label>
         <input type="radio" name="gender" value="male" required> Male
         <input type="radio" name="gender" value="female" required> Female<br><br>
+        </div>
+
+        <div class="form-row">
+            <label for="email">Email:</label>
+            <input type="email" name="email" required>
+        </div>
         
-        <label for="email">Email:</label>
-        <input type="email" name="email" required><br><br>
+        <div class="form-row">
+            <label for="mob">Mobile:</label>
+            <input type="text" name="mob" required>
+        </div>
         
-        <label for="mob">Mobile:</label>
-        <input type="text" name="mob" required><br><br>
+        <div class="form-row">
+            <label for="dob">Date of Birth:</label>
+            <input type="date" name="dob" required>
+        </div>
         
-        <label for="dob">Date of Birth:</label>
-        <input type="date" name="dob" required><br><br>
-        
-        <label for="address">Address:</label>
-        <input type="text" name="address" required><br><br>
+        <div class="form-row">
+            <label for="address">Address:</label>
+            <input type="text" name="address" required>
+        </div>
+        <br>
+        <br>
         <input type="submit" value="Submit" class="regbtn1">
         <br>
         <br>
-        </form>   
+        <br>
+        <br>
+        </form>  
+    </div>
+    <div class="col-3"></div> 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
