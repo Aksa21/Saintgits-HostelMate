@@ -1,22 +1,5 @@
 <?php
-/*
-if($_POST)
-{
-    $username = $_POST['email'];
-    $password1 = $_POST['password'];
-    $conn = new mysqli('localhost', 'root', '', 'hostel');
-    $query = "SELECT password FROM student WHERE email = '$username' and password='$password1'";
-    $result = mysqli_query($conn,$query);
-    if(mysqli_num_rows($result)==1)
-    {
-        session_start();
-        $_SESSION['hostel']='true';
-        header("Location: stdhome.html");
-    }
-    else{
-        echo 'Invalid username or password';
-    }
-}*/
+session_start();
 
 if ($_POST) {
     $username = $_POST['email'];
@@ -29,33 +12,37 @@ if ($_POST) {
     }
 
     // Prepare the SQL statement with a placeholder for username
-    $stmt = $conn->prepare("SELECT password FROM student WHERE email = ?");
+    $stmt = $conn->prepare("SELECT password, std_id FROM student WHERE email = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
 
     if ($result->num_rows == 1) {
-        // Fetch the password from the result set
+        // Fetch the password and std_id from the result set
         $row = $result->fetch_assoc();
         $storedPassword = $row['password'];
+        $std_id = $row['std_id'];
 
         // Verify the password
         if ($password1 === $storedPassword) {
-            session_start();
-            $_SESSION['hostel'] = true;
-            header("Location: stdhome.html");
+            // Set the 'std_id' value in the session
+            $_SESSION['std_id'] = $std_id;
+
+            header("Location: stdhome.php");
             exit();
         } else {
-            $error = 'Invalid username or password';
+            echo 'Invalid username or password';
+            header("Location: stdlogin.html");
+            exit();
         }
     } else {
-        $error = 'Invalid username or password';
+        echo 'Invalid username or password';
+        header("Location: stdlogin.html");
+        
     }
-
-    // Close the statement and connection
     $stmt->close();
+
+    // Close the database connection
     $conn->close();
 }
-
-
 ?>
