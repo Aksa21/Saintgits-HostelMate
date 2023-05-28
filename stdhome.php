@@ -60,13 +60,13 @@ $conn->close();
                 <form action="stdhome.php">
                     <button class="stdbtn" style="color: rgb(32, 32, 50);">Home</button>
                 </form>
-                <form action="stdprofile.html">
+                <form action="stdprofile.php">
                     <button class="stdbtn" style="color: rgb(32, 32, 50);">Profile</button>
                 </form>
-                <form action="stdleave.html">
+                <form action="stdleave.php">
                     <button class="stdbtn" style="color: rgb(32, 32, 50);">Apply Leave</button>
                 </form>
-                <form action="stdstat.html">
+                <form action="stdstat.php">
                     <button class="stdbtn" style="color: rgb(32, 32, 50);">Leave Status</button>
                 </form>
             </div>
