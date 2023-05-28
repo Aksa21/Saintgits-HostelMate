@@ -59,22 +59,22 @@ $conn->close();
             <form action="staffhome.php">
                 <button class="stfbtn" style="color: rgb(32, 32, 50);">Home</button>
             </form>
-            <form action="stfprofile.html">
+            <form action="stfprofile.php">
                 <button class="stfbtn" style="color: rgb(32, 32, 50);">Profile</button>
             </form>
-            <form action="stfleave.html">
+            <form action="stfleave.php">
                 <button class="stfbtn" style="color: rgb(32, 32, 50);">Leave Request</button>
             </form>
-            <form action="stfatdnce.html">
+            <form action="stfatdnce.php">
                 <button class="stfbtn" style="color: rgb(32, 32, 50);">Attendance</button>
             </form>
-            <form action="stfreport.html">
+            <form action="stfreport.php">
                 <button class="stfbtn" style="color: rgb(32, 32, 50);">Report</button>
             </form>
-            <form action="stfstock.html">
+            <form action="stfstock.php">
                 <button class="stfbtn" style="color: rgb(32, 32, 50);">Stock</button>
             </form>
-            <form action="stfremainder.html">
+            <form action="stfremainder.php">
                 <button class="stfbtn" style="color: rgb(32, 32, 50);">Remainder</button>
             </form>
         </div>
