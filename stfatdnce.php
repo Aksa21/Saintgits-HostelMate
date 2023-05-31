@@ -55,21 +55,6 @@ $updateQuery = "UPDATE attendance SET status = 'Absent' WHERE std_id IN (SELECT 
 // Execute the update query
 $conn->query($updateQuery);
 
-$absentQuery = "
-SELECT s.room_no,s.name,a.status
-FROM std_details s
-INNER JOIN attendance a ON s.std_id = a.std_id
-WHERE a.status = 'Absent'
-ORDER BY s.room_no ASC";
-$absentResult = $conn->query($absentQuery);
-
-$presentQuery = "
-SELECT s.room_no,s.name,a.status,s.std_id
-FROM std_details s
-INNER JOIN attendance a ON s.std_id = a.std_id
-WHERE a.status != 'Absent' and a.status != 'Present'
-ORDER BY s.room_no ASC";
-$presentResult = $conn->query($presentQuery);
 $conn->close();
 ?>
 
@@ -124,65 +109,79 @@ $conn->close();
         </div>
 
         <div class="col-9">
-            <h3 style="color: rgb(33, 33, 74); padding-left: 35%; background-color: whitesmoke;">Absentees</h3>
             <br>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="roomNo">Room Number:</label>
+                    <input type="text" class="form-control" id="roomNo" name="roomNo">
+                </div>
+                <button type="submit" style="color:white; margin-left: 40%; background-color: rgb(33, 33, 74); width: 15%; ">Search</button>
+            </form>
+
             <?php
-                if ($absentResult->num_rows > 0) {
-                    echo '<table class=table table stripped>
-                        <tr>
-                            <th>Room No</th>
-                            <th>Name</th>
-                            <th>Status</th>
-                        </tr>';
-                    while ($row = $absentResult->fetch_assoc()) {
-                        $roomNo = $row['room_no'];
-                        $name = $row['name'];
-                        $status = $row['status'];
+            $conn = new mysqli('localhost', 'root', '', 'hostel');
 
-                        echo '<tr>';
-                        echo "<td>$roomNo</td>";
-                        echo "<td>$name</td>";
-                        echo "<td>$status</td>";
-                        echo '</tr>';
+            // Check connection
+            if ($conn->connect_error) {
+                die("Connection failed: " . $conn->connect_error);
+            }
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                if (isset($_POST['roomNo'])) {
+                    $roomNo = $_POST['roomNo'];
+                    // Rest of your code
+                    $studentQuery = "
+                    SELECT s.room_no,s.name,a.status,s.std_id
+                    FROM std_details s
+                    INNER JOIN attendance a ON s.std_id = a.std_id
+                    WHERE s.room_no = '$roomNo'
+                    ORDER BY s.room_no ASC";
+                    $studentResult = $conn->query($studentQuery);
+
+                    if ($studentResult->num_rows > 0) {
+                
+                        echo '<br>';
+                        echo '<form action="update_attendance.php" method="POST">';
+                        echo '<table class="table table-stripped">';
+                        echo '<tr>
+                                <th>Room No</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                            </tr>';
+
+                        while ($row = $studentResult->fetch_assoc()) {
+                            $roomNo = $row['room_no'];
+                            $name = $row['name'];
+                            $stdId = $row['std_id'];
+                            $status = $row['status'];
+                            echo '<tr>';
+                            echo "<td>$roomNo</td>";
+                            echo "<td>$name</td>";
+                            if ($status == 'Absent') {
+                                echo "<td>Absent</td>";
+                            }
+                            elseif ($status == 'Present') {
+                                echo "<td>Present</td>";
+                            } else {
+                                echo "<td><input type='checkbox' name='present[]' value='$stdId'></td>";
+                            }
+                            echo '</tr>';
+                        }
+
+                        echo '</table>';
+                        echo '<input type="submit" style="color:white; margin-left: 40%; background-color: rgb(33, 33, 74); width: 15%;" value="Submit">';
+                        echo '</form>';
+                    } else {
+                        echo "<p>No students found in Room $roomNo.</p>";
                     }
-                    echo '</table>';
-                } else {
-                    echo "<p>No students are absent.</p>";
-                }
-            ?>
-            <h3 style="color: rgb(33, 33, 74); padding-left: 35%; background-color: whitesmoke;">Attendance</h3>
-            <br>
-            <?php
-                if ($presentResult->num_rows > 0) {
-                    echo '<form action="update_attendance.php" method="POST">';
-                    echo '<table class="table table-stripped">';
-                    echo '<tr>
-                            <th>Room No</th>
-                            <th>Name</th>
-                            <th>Present</th>
-                        </tr>';
-
-                    while ($row = $presentResult->fetch_assoc()) {
-                        $roomNo = $row['room_no'];
-                        $name = $row['name'];
-                        $stdId = $row['std_id'];
-                        echo '<tr>';
-                        echo "<td>$roomNo</td>";
-                        echo "<td>$name</td>";
-                        echo "<td><input type='checkbox' name='present[]' value='$stdId'></td>";
-                        echo '</tr>';
+                    } else {
+                        echo "Room number is not provided.";
                     }
-
-                    echo '</table>';
-                    echo '<input type="submit" style="color:white; margin-left: 40%; background-color: rgb(33, 33, 74); width: 15%;" value="Submit">';
-                    echo '</form>';
-                } else {
-                    echo "<p>No students are present.</p>";
                 }
+                $conn->close();
             ?>
-
         </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
