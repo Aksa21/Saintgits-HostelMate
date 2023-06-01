@@ -43,6 +43,26 @@ $totalPresent = $row['totalPresent'];
 // Fetch the not marked students' information
 $query = "SELECT std_id, room_no, name, mob FROM std_details WHERE std_id IN (SELECT std_id FROM attendance WHERE date = '$currentDate' AND status!='Present' AND status!='Absent')";
 $result1 = $conn->query($query);
+
+// ...
+
+// Check if a report for the current date already exists
+$checkReportQuery = "SELECT id FROM report WHERE date = '$currentDate'";
+$checkReportResult = $conn->query($checkReportQuery);
+
+if ($checkReportResult->num_rows == 0) {
+    // Insert the total absent and present counts into the report table if the report for the current date doesn't already exist
+    $insertQuery = "INSERT INTO report (date, total_absent, total_present) VALUES ('$currentDate', '$totalAbsent', '$totalPresent')";
+    $result2 = $conn->query($insertQuery);
+} else {
+    // Update the values of total absent and present for the current date
+    $updateQuery = "UPDATE report SET total_absent = '$totalAbsent', total_present = '$totalPresent' WHERE date = '$currentDate'";
+    $result2 = $conn->query($updateQuery);
+}
+
+// ...
+
+
 // Close the database connection
 $conn->close();
 ?>
@@ -61,7 +81,8 @@ $conn->close();
 <body>
     <div class="row ">
         <div class="stdhead">
-            <h3 class="stdtag">SaintgitsHostelMate</h3>
+            <h3 class="stdtag" style="float: left;">SaintgitsHostelMate</h3>
+            <a href="logout.php" style="color: white; float: right; margin-top: 10px; margin-right: 5%;"><u>Logout</u></a>
         </div>
     </div>
     <div class="row">
