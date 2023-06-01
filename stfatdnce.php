@@ -133,7 +133,7 @@ $conn->close();
                     SELECT s.room_no,s.name,a.status,s.std_id
                     FROM std_details s
                     INNER JOIN attendance a ON s.std_id = a.std_id
-                    WHERE s.room_no = '$roomNo'
+                    WHERE s.room_no = '$roomNo' and a.date='$currentDate'
                     ORDER BY s.room_no ASC";
                     $studentResult = $conn->query($studentQuery);
 
