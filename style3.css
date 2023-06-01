@@ -252,5 +252,17 @@
     background-color: #fff;
 }
 
+/* style for stock buttons*/
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
 
+.button-container button {
+    color: white;
+    background-color: rgb(33, 33, 74);
+    width: 20%;
+    margin-left: 10px;
+}
 
