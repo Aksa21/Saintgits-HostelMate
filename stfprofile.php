@@ -53,7 +53,8 @@ $conn->close();
 <body>
     <div class="row ">
         <div class="stdhead">
-            <h3 class="stdtag">SaintgitsHostelMate</h3>
+            <h3 class="stdtag" style="float: left;">SaintgitsHostelMate</h3>
+            <a href="logout.php" style="color: white; float: right; margin-top: 10px; margin-right: 5%;"><u>Logout</u></a>
         </div>
     </div>
     <div class="row">
