@@ -95,6 +95,7 @@ $conn->close();
                     echo '</tr>';
 
                     while ($row = $result->fetch_assoc()) {
+                        $leaveId = $row['id'];
                         $fromDate = $row['from_date'];
                         $toDate = $row['to_date'];
                         $reason = $row['reason'];
@@ -105,6 +106,12 @@ $conn->close();
                         echo '<td>' . $toDate . '</td>';
                         echo '<td>' . $reason . '</td>';
                         echo '<td>' . $status . '</td>';
+                        echo '<td>';
+                        echo '<form method="post" action="delete_leave.php">'; // Create a form for deleting the leave request
+                        echo '<input type="hidden" name="leaveId" value="' . $leaveId . '">'; // Hidden input field to store the leave ID
+                        echo '<button type="submit" class="btn btn-danger btn-sm">Delete</button>'; // Delete button
+                        echo '</form>';
+                        echo '</td>';
                         echo '</tr>';
                     }
 
