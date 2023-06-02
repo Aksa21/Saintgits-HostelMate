@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 $leaveId = $_POST['leaveId'];
 
 // Delete the leave request from the leave_history table
-$query = "DELETE FROM leave_history WHERE id = '$leaveId' AND std_id = '$std_id'";
+$query = "DELETE FROM leave_history WHERE id = '$leaveId' AND std_id = '$std_id' and from_date< CURDATE()";
 $result = $conn->query($query);
 
 if ($result) {
