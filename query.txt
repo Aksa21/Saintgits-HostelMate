@@ -1,0 +1,92 @@
+CREATE TABLE std_details(
+  std_id int AUTO_INCREMENT PRIMARY KEY, 
+  name varchar(255), 
+  room_no int,
+  admission_no varchar(255), 
+  program varchar(255), 
+  branch varchar(255), 
+  guardian varchar(255), 
+  guardian_mob varchar(255), 
+  address text, 
+  mob varchar(255), 
+  dob date, 
+  pin varchar(255), 
+  email varchar(255), 
+  food_type varchar(255)
+);
+
+CREATE TABLE staff_details(
+  stf_id int AUTO_INCREMENT PRIMARY KEY, 
+  name varchar(255), 
+  gender ENUM('male','female'), 
+  email varchar(255), 
+  mob varchar(255), 
+  dob date, 
+  address text
+); 
+
+CREATE TABLE student (
+  email VARCHAR(255) PRIMARY KEY,
+  std_id INT,
+  password VARCHAR(255),
+  FOREIGN KEY (std_id) REFERENCES std_details(std_id)
+);
+
+CREATE TABLE staff (
+  email VARCHAR(255) PRIMARY KEY,
+  stf_id INT,
+  password VARCHAR(255),
+  FOREIGN KEY (stf_id) REFERENCES staff_details(stf_id)
+);
+
+CREATE TABLE leave_requests (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  std_id INT,
+  from_date DATE,
+  to_date DATE,
+  reason VARCHAR(255),
+  status ENUM('applied', 'accepted', 'rejected') DEFAULT 'applied',
+  FOREIGN KEY (std_id) REFERENCES std_details(std_id)
+);
+
+CREATE TABLE leave_history LIKE leave_requests;
+
+CREATE TABLE attendance (
+  atd_id INT PRIMARY KEY AUTO_INCREMENT,
+  std_id INT,
+  date DATE,
+  status ENUM('Present', 'Absent', 'Not Marked'),
+  FOREIGN KEY (std_id) REFERENCES std_details(std_id)
+);
+
+ALTER TABLE std_details
+ADD COLUMN image VARCHAR(255);
+
+
+CREATE TABLE stock (
+    stock_id VARCHAR(5) PRIMARY KEY,
+    item_name VARCHAR(50),
+    quantity INT 
+);
+
+INSERT INTO stock (stock_id, item_name)
+VALUES
+    ('ST01', 'Rice'),
+    ('ST02', 'Oil'),
+    ('ST03', 'Flour'),
+    ('ST04', 'Sugar'),
+    ('ST05', 'Salt'),
+    ('ST06', 'Tomato'),
+    ('ST07', 'Green Chilly'),
+    ('ST08', 'Ginger'),
+    ('ST09', 'Garlic'),
+    ('ST10', 'Onion'),
+    ('ST11', 'Dal'),
+    ('ST12', 'Coffee Powder');
+
+CREATE TABLE report (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  date DATE,
+  total_absent INT,
+  total_present INT
+);
