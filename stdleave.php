@@ -14,16 +14,18 @@ if ($conn->connect_error) {
 }
 
 // Fetch the name from the std_details table based on the std_id
-$query = "SELECT name FROM std_details WHERE std_id = '$std_id'";
+$query = "SELECT name,image FROM std_details WHERE std_id = '$std_id'";
 $result = $conn->query($query);
 
 if ($result->num_rows == 1) {
     // Name found, fetch and store it in a variable
     $row = $result->fetch_assoc();
     $name = $row['name'];
+    $image1 = $row['image'];
 } else {
     // Name not found, handle the error
     $name = "Unknown";
+    $image1 ='';
 }
 
 // Close the database connection
@@ -54,7 +56,11 @@ $conn->close();
         </div>
         <div class="row">
             <div class="col-3">
-                <img src="icon1.png" class="img-fluid">
+                <?php if (!empty($image1)) { ?>
+                    <img src="<?php echo $image1; ?>" class="img-fluid1">
+                <?php }else{?>
+                    <img src="icon1.png" class="img-fluid1">
+                <?php } ?>
                 <br>
                 <h5 style="padding-left:29%; color: rgb(32, 32, 50); padding-top: 0%; font-weight: bold; background: whitesmoke;  " ><?php echo $name; ?></h5>
 
