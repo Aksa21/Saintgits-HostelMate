@@ -13,16 +13,18 @@ if ($conn->connect_error) {
 }
 
 // Fetch the name from the staff_details table based on the stf_id
-$query = "SELECT name FROM staff_details WHERE stf_id = '$stf_id'";
+$query = "SELECT name,image FROM staff_details WHERE stf_id = '$stf_id'";
 $result = $conn->query($query);
 
 if ($result->num_rows == 1) {
     // Name found, fetch and store it in a variable
     $row = $result->fetch_assoc();
     $name = $row['name'];
+    $image1 = $row['image'];
 } else {
     // Name not found, handle the error
     $name = "Unknown";
+    $image1 ='';
 }
 
 // Get the current date
@@ -83,7 +85,11 @@ $conn->close();
     </div>
     <div class="row">
         <div class="col-3">
-            <img src="icon1.png" class="img-fluid1">
+            <?php if (!empty($image1)) { ?>
+                <img src="<?php echo $image1; ?>" class="img-fluid1">
+            <?php }else{?>
+                <img src="icon1.png" class="img-fluid1">
+            <?php } ?>
             <h5 style="padding-left:27%; color: rgb(32, 32, 50); padding-top: 1%; font-weight: bold; background: whitesmoke;"><?php echo $name; ?></h5>
 
             <form action="staffhome.php">
