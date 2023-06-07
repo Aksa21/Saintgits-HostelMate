@@ -32,6 +32,7 @@ if ($result->num_rows == 1) {
     $pin = $row['pin'];
     $email = $row['email'];
     $food_type = $row['food_type'];
+    $image1 = $row['image'];
 } else {
     // Name not found, handle the error
     $name = "Unknown";
@@ -47,6 +48,7 @@ if ($result->num_rows == 1) {
     $pin = "";
     $email = "";
     $food_type = "";
+    $image1 = "";
 }
 
 // Close the database connection
@@ -77,7 +79,11 @@ $conn->close();
 </div>
 <div class="row ">
     <div class="col-3">
-        <img src="icon1.png" class="img-fluid1">
+        <?php if (!empty($image1)) { ?>
+            <img src="<?php echo $image1; ?>" class="img-fluid1">
+        <?php }else{?>
+            <img src="icon1.png" class="img-fluid1">
+        <?php } ?>
         <br>
         <h5 style="padding-left:29%; color: rgb(32, 32, 50); padding-top: 0%; font-weight: bold; background: whitesmoke;  " ><?php echo $name; ?></h5>
         <form action="stdhome.php">
@@ -94,7 +100,7 @@ $conn->close();
         </form>
     </div>
     <div class="col-9">
-        <form action="update_profilestd.php" method="POST">
+        <form action="update_profilestd.php" method="POST" enctype="multipart/form-data">
             <table class="table table-striped">
                 <tr>
                     <th>Name</th>
@@ -151,6 +157,16 @@ $conn->close();
                             <option value="Veg" <?php if ($food_type == 'Veg') echo "selected"; ?>>Veg</option>
                             <option value="Non-Veg" <?php if ($food_type == 'Non-Veg') echo "selected"; ?>>Non-Veg</option>
                         </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Photo</th>
+                    <td>
+                        <input type="file" name="image" accept="image/*">
+                        <?php if (!empty($image1)) { ?>
+                            <br>
+                            <img src="<?php echo $image1; ?>" style="height: 5%; width: 5%;">
+                        <?php } ?>
                     </td>
                 </tr>
             </table>
