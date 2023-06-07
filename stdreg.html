@@ -22,7 +22,7 @@
     <div class="row no-gutters">
         <div class="col-2"></div>
         <div class="col-7">
-            <form class="regform" action="stdsignup.php" method="post">
+            <form class="regform" action="stdsignup.php" method="post" enctype="multipart/form-data">
                 <br>
                 <br>
                 <div class="form-row">
@@ -92,6 +92,11 @@
                     <option>Veg</option>
                     <option>Non-Veg</option>
                     </select>
+                </div>
+
+                <div class="form-row">
+                    <label for="image">Upload Image:</label>
+                    <input type="file" name="image" accept="image/*">
                 </div>
 
                 <div class="form-row">
