@@ -26,6 +26,21 @@ $email = $_POST['email'];
 $food_type = $_POST['food_type'];
 $password=$_POST['password'];
 
+// Check if the email already exists in the table
+$conn = new mysqli('localhost', 'root', '', 'hostel');
+$existingEmailQuery = "SELECT email FROM student WHERE email = ?";
+$stmt = $conn->prepare($existingEmailQuery);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$stmt->store_result();
+$numRows = $stmt->num_rows;
+$stmt->close();
+
+if ($numRows > 0) {
+    echo '<script>alert("Email already exists. Please choose a different email."); window.history.back();</script>';
+    exit;
+}
+
 // Check if an image file was uploaded
 if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
     $image_name = $_FILES['image']['name'];
