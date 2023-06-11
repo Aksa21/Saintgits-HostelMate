@@ -221,6 +221,19 @@ $conn->close();
                 
                 $conn->close();
                 ?>
+                <br>
+                <br>
+                <form action="download_report.php" method="POST">
+                    <input type="hidden" name="currentDate" value="<?php echo $currentDate; ?>">
+                    <button type="submit" value="Download Report" style="color:white; margin-left: 40%; background-color: rgb(33, 33, 74); width: 25%; ">Download Daily Report</button>
+                </form>
+                <br>
+                <br>
+                <br>
+                <form action="download_month.php" method="POST">
+                    <input type="hidden" name="currentDate" value="<?php echo $currentDate; ?>">
+                    <button type="submit" value="Download Report" style="color:white; margin-left: 40%; background-color: rgb(33, 33, 74); width: 25%; ">Download Monthly Report</button>
+                </form>
 
         </div>
 
