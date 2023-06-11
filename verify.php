@@ -31,13 +31,12 @@ if ($_POST) {
             header("Location: stdhome.php");
             exit();
         } else {
-            echo 'Invalid username or password';
-            header("Location: stdlogin.html");
-            exit();
+            echo '<script>alert("Invalid Username/Password"); window.history.back();</script>';
+            exit;
         }
     } else {
-        echo 'Invalid username or password';
-        header("Location: stdlogin.html");
+        echo '<script>alert("Invalid Username/Password"); window.history.back();</script>';
+        exit;
         
     }
     $stmt->close();
