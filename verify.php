@@ -36,7 +36,6 @@ if ($_POST) {
         }
     } else {
         echo '<script>alert("Invalid Username/Password"); window.history.back();</script>';
-        exit;
         
     }
     $stmt->close();
