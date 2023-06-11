@@ -30,14 +30,11 @@ if ($_POST) {
             header("Location: staffhome.php");
             exit();
         } else {
-            echo 'Invalid username or password';
-            header("Location: stafflgn.html");
-            exit();
+            echo '<script>alert("Invalid Username/Password"); window.history.back();</script>';
+            exit;
         }
     } else {
-        echo 'Invalid username or password';
-        header("Location: stafflgn.html");
-        
+        echo '<script>alert("Invalid Username/Password"); window.history.back();</script>';
     }
     $stmt->close();
 
